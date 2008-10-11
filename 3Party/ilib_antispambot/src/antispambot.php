@@ -1,16 +1,15 @@
 <?php
 if (!function_exists('antispambot')) {
-  /**
-   * This function is dynamically redefinable.
-   * @see $GLOBALS['_global_function_callback_get_ip_address']
-   */
-  function antispambot($args) {
-    $args = func_get_args();
-    return call_user_func_array($GLOBALS['_global_function_callback_antispambot'], $args);
-  }
-  if (!isset($GLOBALS['_global_function_callback_antispambot'])) {
-    $GLOBALS['_global_function_callback_antispambot'] = 'ilib_antispambot';
-  }
+    /**
+     * This function is dynamically redefinable.
+     */
+    function antispambot($args) {
+        $args = func_get_args();
+        return call_user_func_array($GLOBALS['_global_function_callback_antispambot'], $args);
+    }
+    if (!isset($GLOBALS['_global_function_callback_antispambot'])) {
+        $GLOBALS['_global_function_callback_antispambot'] = 'ilib_antispambot';
+    }
 }
 
 /**
@@ -25,7 +24,8 @@ if (!function_exists('antispambot')) {
  *
  * @return string Spam encoded email address
  */
-function ilib_antispambot($emailaddy, $mailto=0) {
+function ilib_antispambot($emailaddy, $mailto=0)
+{
     $emailNOSPAMaddy = '';
     srand ((float) microtime() * 1000000);
     for ($i = 0; $i < strlen($emailaddy); $i = $i + 1) {
